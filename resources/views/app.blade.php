@@ -18,12 +18,16 @@
     <meta property="og:image" content="URL to the template's logo or featured image">
     <meta property="og:url" content="URL to the template's webpage">
     <meta name="twitter:card" content="summary_large_image">
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/> --}}
 
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ URL::asset('image/favicon.ico') }}">
 
     <!-- Scripts -->
     @routes
+    {{-- @vite(['resources/js/main.js']) --}}
+    {{-- @vite('resources/js/app.js') --}}
+
     @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
     @inertiaHead
 </head>

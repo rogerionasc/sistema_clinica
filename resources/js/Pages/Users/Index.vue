@@ -7,7 +7,7 @@ import PageHeader from "@/Components/page-header.vue";
 // import { Grid } from "gridjs";
 import "gridjs/dist/theme/mermaid.css";
 import TableGrid from "@/Components/Tables/TableGrid.vue";
-import ModalTeste from '@/Components/ModalTeste.vue';
+import Modal from '@/Components/Modal.vue';
 
 // Dados para geração aleatória
 const nomes = ["LucasNascimentoSantosNascimentos", "Maria", "João", "Ana", "Pedro", "Julia", "Carlos", "Fernanda", "Bruno", "Amanda", "Rafael", "Camila", "Diego", "Patricia", "Gabriel", "Laura"];
@@ -45,7 +45,7 @@ const columns = [
 const showModal = ref(false);
 
 function openModalAdd() {
-    alert('Adicionar');
+    showModal.value = true;
 }
 
 function openModalDeleteMulti(selectedIds) {
@@ -79,8 +79,9 @@ function openModalShow(id) {
         @show="openModalShow"
         @add="openModalAdd"
         />
-        <ModalTeste>
-        </ModalTeste>
+        <Modal v-model="showModal" />
     </Layout>
+
+
 
 </template>

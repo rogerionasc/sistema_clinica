@@ -2,6 +2,7 @@ import './bootstrap';
 import '../scss/config/default/app.scss';
 import '@vueform/slider/themes/default.css';
 import '../scss/mermaid.min.css';
+import 'animate.css';
 
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
