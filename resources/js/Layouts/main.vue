@@ -4,12 +4,14 @@ import { layoutComputed } from "@/state/helpers";
 import Vertical from "./vertical.vue";
 import Horizontal from "./horizontal.vue";
 import TwoColumns from "./twocolumn.vue";
+import FlashMessage from "@/Components/FlashMessage.vue";
 
 export default {
     components: {
         Vertical,
         Horizontal,
-        TwoColumns
+        TwoColumns,
+        FlashMessage
     },
     data() {
         return {};
@@ -25,6 +27,7 @@ export default {
 
 <template>
     <div>
+        <FlashMessage />
         <Vertical v-if="layoutType === 'vertical' || layoutType === 'semibox'" :layout="layoutType">
             <slot />
         </Vertical>

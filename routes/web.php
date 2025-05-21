@@ -19,7 +19,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::controller(VelzonRoutesController::class)->group(function () {
 
         // dashboards
-        Route::get('/', 'dashboard');
+        Route::get('/', 'dashboard')->name('dashboard');
         Route::get('medicos', 'medico');
         Route::get('usuarios', 'usuario');
 
