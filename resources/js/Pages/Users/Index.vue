@@ -8,6 +8,7 @@ import PageHeader from "@/Components/page-header.vue";
 import "gridjs/dist/theme/mermaid.css";
 import TableGrid from "@/Components/Tables/TableGrid.vue";
 import Modal from '@/Components/Modal.vue';
+import ModalDelete from '@/Components/ModalDelete.vue';
 
 // Dados para geração aleatória
 const nomes = ["LucasNascimentoSantosNascimentos", "Maria", "João", "Ana", "Pedro", "Julia", "Carlos", "Fernanda", "Bruno", "Amanda", "Rafael", "Camila", "Diego", "Patricia", "Gabriel", "Laura"];
@@ -34,15 +35,17 @@ function gerarUsuarios(quantidade) {
 const users = gerarUsuarios(5000);
 
 const columns = [
-  { id: "id", name: "ID" },
-  { id: "nome", name: "Nome" },
-  { id: "email", name: "Email" },
-  { id: "cargo", name: "Cargo" },
-  { id: "empresa", name: "Empresa" },
-  { id: "pais", name: "País" },
+    { id: "id", name: "ID" },
+    { id: "nome", name: "Nome" },
+    { id: "email", name: "Email" },
+    { id: "cargo", name: "Cargo" },
+    { id: "empresa", name: "Empresa" },
+    { id: "pais", name: "País" },
 ];
 
 const showModal = ref(false);
+const deleteModal = ref(false);
+const userToDelete = ref(null);
 
 function openModalAdd() {
     showModal.value = true;
@@ -52,14 +55,15 @@ function openModalDeleteMulti(selectedIds) {
     alert('Remover Varios: ' + JSON.stringify(selectedIds));
 }
 
-function openModalDelete(id) {
-    alert('Excluir: ID '+ JSON.stringify(id));
+function openModalDelete(user) {
+    userToDelete.value = user;
+    deleteModal.value = true;
 }
 function openModalEdit(id) {
-    alert('Editar: ID '+ JSON.stringify(id));
+    alert('Editar: ID ' + JSON.stringify(id));
 }
 function openModalShow(id) {
-    alert('Mostar: ID '+ JSON.stringify(id));
+    alert('Mostar: ID ' + JSON.stringify(id));
 }
 
 
@@ -68,18 +72,11 @@ function openModalShow(id) {
 <template>
     <Layout>
         <PageHeader title="Usuários" pageTitle="Configuração" />
-        <TableGrid
-        :columns="columns"
-        :data="users"
-        :tableTitle="'Todos os Usuários'"
-        :searchPlaceholder="'Buscar por usuário'"
-        @modalDdeletarMultiplos="openModalDeleteMulti"
-        @delete="openModalDelete"
-        @edit="openModalEdit"
-        @show="openModalShow"
-        @add="openModalAdd"
-        />
+        <TableGrid :columns="columns" :data="users" :tableTitle="'Todos os Usuários'"
+            :searchPlaceholder="'Buscar por usuário'" @modalDdeletarMultiplos="openModalDeleteMulti"
+            @delete="openModalDelete" @edit="openModalEdit" @show="openModalShow" @add="openModalAdd" />
         <Modal v-model="showModal" />
+        <ModalDelete v-model="deleteModal" :item-delete="userToDelete" />
     </Layout>
 
 

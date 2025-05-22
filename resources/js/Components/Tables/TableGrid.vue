@@ -262,9 +262,21 @@ function initGrid() {
             name: 'Ações',
             formatter: (cell, row) => {
                 const rowId = row.cells[1].data;
+                // Captura o objeto completo da linha
+                const rowData = filteredData.value.find(r => {
+                    let idCol;
+                    if (props.columns[0] && typeof props.columns[0] === 'object') {
+                        idCol = props.columns[0].id || props.columns[0].name;
+                    } else {
+                        idCol = props.columns[0];
+                    }
+                    if (!idCol) return false;
+                    return String(r[idCol]) === String(rowId) || String(r.id) === String(rowId);
+                }) || {};
+                // Passa o objeto completo no evento
                 return html(`
                     <div class="d-flex gap-2">
-                        <button class="btn btn-sm btn-soft-danger" type="button" data-action="delete" data-id="${rowId}" title="Excluir"><i class="ri-delete-bin-5-fill align-bottom"></i></button>
+                        <button class="btn btn-sm btn-soft-danger" type="button" data-action="delete" data-id="${rowId}" data-row='${JSON.stringify(rowData)}' title="Excluir"><i class="ri-delete-bin-5-fill align-bottom"></i></button>
                         <button class="btn btn-sm btn-soft-info" type="button" data-action="edit" data-id="${rowId}" title="Editar"><i class="ri-pencil-fill align-bottom"></i></button>
                         <button class="btn btn-sm btn-soft-warning" type="button" data-action="show" data-id="${rowId}" title="Visualizar"><i class="ri-eye-fill align-bottom"></i></button>
                     </div>
@@ -310,7 +322,14 @@ function initGrid() {
         if (!target) return;
         const action = target.getAttribute('data-action');
         const id = target.getAttribute('data-id');
-        if(action === 'delete') emit('delete', id);
+        // Recupera o objeto completo da linha se for delete
+        if(action === 'delete') {
+            let rowObj = {};
+            try {
+                rowObj = JSON.parse(target.getAttribute('data-row'));
+            } catch (e) {}
+            emit('delete', rowObj);
+        }
         else if(action === 'edit') emit('edit', id);
         else if(action === 'show') emit('show', id);
     };
