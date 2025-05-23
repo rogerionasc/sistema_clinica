@@ -14,7 +14,7 @@
 
                             <div class="mt-4">
                                 <h4 class="mb-3">{{ title }}</h4>
-                                <p class="text-muted mt-3"> Esta ação não poderá ser desfeita. "<span class="text-danger fs-5">{{ itemDelete.nome }}</span>" será removido permanentemente do sistema.</p>
+                                <p class="text-muted mt-3" v-if="itemDelete && itemDelete.nome"> Esta ação não poderá ser desfeita. "<span class="text-danger fs-5">{{ itemDelete.nome }}</span>" será removido permanentemente do sistema.</p>
                                 <div class="hstack gap-2 justify-content-center">
                                     <a href="javascript:void(0);" @click="$emit('update:modelValue', false)"
                                         class="btn btn-link link-close fw-medium material-shadow-none"
