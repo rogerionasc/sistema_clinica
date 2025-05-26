@@ -70,7 +70,7 @@ function openModalShow(id) {
         :showCheckbox="true"
         :search="true"
         :showAddButton="true"
-        :showStatus="true"
+        :showStatus="false"
         @abrir-modal-adicionar="openModalAdd"
         @abrir-modal-deletar-varios="openModalDeleteMulti"
         @delete-item="openModalDelete"

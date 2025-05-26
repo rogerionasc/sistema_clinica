@@ -32,7 +32,7 @@ function gerarUsuarios(quantidade) {
 }
 
 // Gerar 1000 usuários
-const users = gerarUsuarios(5000);
+const users = gerarUsuarios(50000);
 
 const columns = [
     { id: "id", name: "ID" },
@@ -72,10 +72,23 @@ function openModalShow(id) {
 <template>
     <Layout>
         <PageHeader title="Componentes" pageTitle="Configuração" />
-        <TableGrid :columns="columns" :data="users" :tableTitle="'Todos os Componentes'"
-            :searchPlaceholder="'Buscar por usuário'" @modalDdeletarMultiplos="openModalDeleteMulti"
-            @delete="openModalDelete" @edit="openModalEdit" @show="openModalShow" @add="openModalAdd" />
-        <Modal v-model="showModal" :name-button="'Atualizar'" :title="'Atualizar Usuário'" />
+        <TableGrid
+        :columns="columns"
+        :data="users"
+        :tableTitle="'Todos os Componentes'"
+        :showActions="true"
+        :showCheckbox="true"
+        :search="true"
+        :showAddButton="true"
+        :showStatus="true"
+        :searchPlaceholder="'Buscar por usuário'"
+        @modalDdeletarMultiplos="openModalDeleteMulti"
+        @delete="openModalDelete"
+        @edit="openModalEdit"
+        @show="openModalShow"
+        @add="openModalAdd"
+        />
+        <Modal v-model="showModal" :name-button="'Salvar'" :title="'Adiconar Usuário'" />
 
         <ModalDelete v-model="deleteModal" :item-delete="userToDelete" />
     </Layout>
