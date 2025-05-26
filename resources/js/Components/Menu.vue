@@ -46,8 +46,15 @@ export default {
             icon: "ri-user-fill",
             title: this.$t("t-user"),
             type: "link",
-            target: "#usuarios",
+            target: "/usuarios",
         },
+        {
+            icon: "ri-layout-grid-fill",
+            title: this.$t("t-components"),
+            type: "link",
+            target: "/componentes",
+        },
+
         {
           icon: "ri-account-circle-line",
           title: this.$t("t-authentication"),

@@ -22,6 +22,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
         Route::get('/', 'dashboard')->name('dashboard');
         Route::get('medicos', 'medico');
         Route::get('usuarios', 'usuario');
+        Route::get('componentes', 'componentes')->name('componentes');
 
 
         // pages routes

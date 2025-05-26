@@ -12,6 +12,10 @@ class VelzonRoutesController extends Controller
         return Inertia::render('NewPage/index');
     }
 
+    public function componentes() {
+        return Inertia::render('Componentes/Index');
+    }
+
     public function usuario()
     {
         return Inertia::render('Users/Index');
