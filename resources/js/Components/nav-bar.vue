@@ -744,14 +744,14 @@ export default {
           <BDropdown variant="link" class="ms-sm-3 header-item topbar-user" toggle-class="rounded-circle arrow-none" menu-class="dropdown-menu-end" :offset="{ alignmentAxis: -14, crossAxis: 0, mainAxis: 0 }">
             <template #button-content>
               <span class="d-flex align-items-center">
-                <img v-if="$page.props.jetstream.managesProfilePhotos" class="rounded-circle header-profile-user" :src="$page.props.auth.user.profile_photo_url" :alt="$page.props.auth.user.name">
+                <img v-if="$page.props.jetstream.managesProfilePhotos" class="rounded-circle header-profile-user" :src="$page.props.auth.user.profile_photo_url" :alt="$page.props.auth.user.nome">
                 <span class="text-start ms-xl-2">
-                  <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ $page.props.auth.user.name }}</span>
+                  <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ $page.props.auth.user.nome }} {{ $page.props.auth.user.sobrenome }}</span>
                   <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text">Dev</span>
                 </span>
               </span>
             </template>
-            <h6 class="dropdown-header">Welcome {{ $page.props.auth.user.name }}!</h6>
+            <h6 class="dropdown-header">Welcome {{ $page.props.auth.user.nome }} {{ $page.props.auth.user.sobrenome }}!</h6>
             <Link class="dropdown-item" :href="route('profile.show')"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i>
             <span class="align-middle">Profile</span>
             </Link>

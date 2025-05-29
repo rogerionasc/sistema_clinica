@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pre_users', function (Blueprint $table) {
+        Schema::create('pre_cadastro', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('nome');
+            $table->string('sobrenome');
+            $table->string('cpf')->unique();
+            $table->string('telefone');
+            $table->date('data_nascimento');
             $table->string('email')->unique();
             $table->string('password');
             $table->timestamps();

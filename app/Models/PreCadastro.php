@@ -5,16 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PreUser extends Model
+class PreCadastro extends Model
 {
     use HasFactory;
 
-    protected $table = 'pre_users';
+    protected $table = 'pre_cadastro';
 
     protected $fillable = [
-        'name',
+        'nome',
+        'sobrenome',
+        'cpf',
+        'telefone',
+        'data_nascimento',
         'email',
         'password',
-        // Adicione outros campos conforme necessário
     ];
 }
