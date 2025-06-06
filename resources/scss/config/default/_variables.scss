@@ -63,6 +63,7 @@ $grays: (
 // scss-docs-start color-variables
 $blue:       #3577f1;
 $indigo:     #405189;
+$green_sheen:#099885;
 $purple:     #6559cc;
 $pink:       #f672a7;
 $red:        #f06548;
@@ -77,6 +78,7 @@ $cyan:       #299cdb;
 $colors: (
   "blue":       $blue,
   "indigo":     $indigo,
+  "green-sheen":$green_sheen,
   "purple":     $purple,
   "pink":       $pink,
   "red":        $red,
@@ -322,7 +324,7 @@ $cyans: (
 // fusv-enable
 
 // scss-docs-start theme-color-variables
-$primary:       $indigo;
+$primary:       $green_sheen;
 $secondary:     $blue;
 $success:       $green;
 $info:          $cyan;

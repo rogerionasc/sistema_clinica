@@ -16,6 +16,8 @@
                 <!-- Botão para fechar o modal -->
                 <button type="button" class="btn-close" @click="$emit('update:modelValue', false)"></button>
               </div>
+              <!-- Inserir uma linha aqui -->
+              <hr class="text-muted">
               <div class="modal-body">
                 <!-- Espaço para inserir conteúdo personalizado -->
                 <slot></slot>
@@ -34,7 +36,7 @@
 
 <script setup>
 // Importação de funções do Vue
-import { ref, watch, nextTick } from 'vue'
+import { ref, watch, nextTick, onBeforeUnmount } from 'vue'
 
 // Definição das propriedades recebidas pelo componente
 const props = defineProps({
@@ -60,9 +62,21 @@ const showClass = ref('');
 // Referência ao elemento do dialog
 const modalDialog = ref(null);
 
-// Observa mudanças na propriedade modelValue para controlar animações
+// Função para desabilitar a barra de rolagem
+const disableScroll = () => {
+    document.body.style.overflow = 'hidden';
+};
+
+// Função para habilitar a barra de rolagem
+const enableScroll = () => {
+    document.body.style.overflow = '';
+};
+
+// Observa mudanças na propriedade modelValue para controlar animações e a barra de rolagem
 watch(() => props.modelValue, async (val) => {
     if (val) {
+        // Modal está abrindo
+        disableScroll(); // Desabilita a barra de rolagem
         showClass.value = '';
         await nextTick();
         showClass.value = 'show';
@@ -70,11 +84,18 @@ watch(() => props.modelValue, async (val) => {
             modalDialog.value.style.animation = 'zoomIn 0.3s ease';
         }
     } else {
+        // Modal está fechando
+        enableScroll(); // Habilita a barra de rolagem
         showClass.value = '';
         if (modalDialog.value) {
             modalDialog.value.style.animation = '';
         }
     }
+});
+
+// Garantir que a barra de rolagem seja restaurada se o componente for destruído
+onBeforeUnmount(() => {
+    enableScroll();
 });
 </script>
 

@@ -9,6 +9,7 @@ import "gridjs/dist/theme/mermaid.css";
 import TableGrid from "@/Components/Tables/TableGrid.vue";
 import Modal from '@/Components/Modal.vue';
 import ModalDelete from '@/Components/ModalDelete.vue';
+import UserForm from '@/Pages/Users/Create.vue';
 
 // Dados para geração aleatória
 const nomes = ["LucasNascimentoSantosNascimentos", "Maria", "João", "Ana", "Pedro", "Julia", "Carlos", "Fernanda", "Bruno", "Amanda", "Rafael", "Camila", "Diego", "Patricia", "Gabriel", "Laura"];
@@ -75,7 +76,12 @@ function openModalShow(id) {
         <TableGrid :columns="columns" :data="users" :tableTitle="'Todos os Usuários'"
             :searchPlaceholder="'Buscar por usuário'" @modalDdeletarMultiplos="openModalDeleteMulti"
             @delete="openModalDelete" @edit="openModalEdit" @show="openModalShow" @add="openModalAdd" />
-        <Modal v-model="showModal" />
+        <Modal
+            v-model="showModal"
+            :title="'Adicionar Usuário'"
+            >
+            <UserForm />
+        </Modal>
         <ModalDelete v-model="deleteModal" :item-delete="userToDelete" />
     </Layout>
 
